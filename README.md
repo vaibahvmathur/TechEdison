@@ -7,10 +7,11 @@ Steps to follow  :
     5)	Pip install Django==1.10.1						                        CMD
     6)	Open Git Bash and ( go to new_folder path ) and type Git init           GIT BASH
     7)	Git clone https://github.com/vaibahvmathur/TechEdison                   GIT BASH
-    8)	Cd TechEdison (project folder)				 	                         CMD
+    8)	change directory to  TechEdison/techapp (project folder)                CMD
+    9)  put the Tracking-Log.txt file in TechEdison\techapp folder under name log.txt
+    10) cd TechEdision (Project folder) 
     9)	Python manage.py runserver					                             CMD
     10)	Type http://127.0.0.1:8000/techapp/  in webbrowser		                 CMD
-
 
 
 
