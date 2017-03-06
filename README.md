@@ -45,7 +45,7 @@ Logic :
                      
 Result :  
 	
-	1)  http://127.0.0.1:8000/techapp/log   POSTMAN ( post request )
+	1)  http://127.0.0.1:8000/techapp/log   API test in POSTMAN for post request
 	2)  http://127.0.0.1:8000/techapp/graph   webbrowser       
 
 Attached :  
