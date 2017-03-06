@@ -9,9 +9,9 @@ Steps to follow  :
     7)	Git clone https://github.com/vaibahvmathur/TechEdison                   GIT BASH
     8)	change directory to  TechEdison/techapp (project folder)                CMD
     9)  put the Tracking-Log.txt file in TechEdison\techapp folder under name log.txt
-    10) cd TechEdision (Project folder) 
-    9)	Python manage.py runserver					                             CMD
-    10)	Type http://127.0.0.1:8000/techapp/  in webbrowser		                 CMD
+    10) cd TechEdision (Project folder) 				  					    CMD
+    11)	Python manage.py runserver					                            CMD
+    12)	Type http://127.0.0.1:8000/techapp/  in webbrowser		                CMD
 
 
 
@@ -43,4 +43,11 @@ Logic :
  
  
                      
-Result :  Web Screenshot for graph and POSTMAN API snapshot Added                     
+Result :  
+	
+	1)  http://127.0.0.1:8000/techapp/log   POSTMAN ( post request )
+	2)  http://127.0.0.1:8000/techapp/graph   webbrowser       
+
+Attached :  
+	
+	Web Screenshot for graph and POSTMAN API snapshot Added                     
