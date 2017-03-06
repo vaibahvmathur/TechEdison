@@ -43,4 +43,4 @@ Logic :
  
  
                      
-Result :  Snapshot Added                     
+Result :  Web Screenshot for graph and POSTMAN API snapshot Added                     

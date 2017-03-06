@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <style>
             table {
                 font-family: arial, sans-serif;
@@ -20,6 +22,7 @@
         </style>
     </head>
     <body>
+        <br/><br/><br/>
         <table>
             <tr>
                 <th>User_id</th>
@@ -35,6 +38,59 @@
             </tr>
             {% endfor %}
         </table>
-
+        <br/><br/><br/>
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <script>
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'User Log Data'
+                },
+                subtitle: {
+                    text: 'Source: https://www.teachedison.com/'
+                },
+                xAxis: {
+                    categories: [
+                        '6',
+                        '7',
+                        '15'
+                    ],
+                    title: {
+                        text: 'User ID'
+                    },
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Values'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">user id {point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0"> {series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'total video played',
+                    data: [1, 5, 0]
+                }, {
+                    name: 'total course enrolled',
+                    data: [0,2,2]
+                }]
+            });
+        </script>
     </body>
 </html>
+

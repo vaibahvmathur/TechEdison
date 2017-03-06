@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .get-log, .get-log-graph{
+                background: lightgreen;
+                font-style: italic;
+                color: black;
+                width: 60%;
+                height: 10%;
+                margin: 2cm 4cm 3cm 4cm;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="{% url 'user_log_api' %}" method="post">{% csrf_token %}
+            <input type="submit" class="get-log" value="User Log Data API">
+        </form>
+        <form action="{% url 'user_log_graph' %}" method="post">{% csrf_token %}
+            <input type="submit" class="get-log-graph" value="User Log Data Graph">
+        </form>
+    </body>
+</html>

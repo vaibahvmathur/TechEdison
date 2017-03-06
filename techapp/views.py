@@ -1,10 +1,29 @@
-from django.shortcuts import render
-
-# Create your views here.
 import json
 from django.shortcuts import render_to_response
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
-def index(request):
+
+def home(request):
+    return render_to_response('home.html', {})
+
+@csrf_exempt
+def user_log_api(request):
+    final_list = get_user_log_data()
+    return HttpResponse(json.dumps({'log_data': final_list}), content_type='application/javascript')
+
+
+@csrf_exempt
+def user_log_graph(request):
+    final_list = get_user_log_data()
+    return render_to_response(
+            'log.html',
+            {'log_data': final_list},
+    )
+
+
+
+def get_user_log_data():
     final_list = {}
     course_id_list = {}
     course_id_count = {}
@@ -23,22 +42,29 @@ def index(request):
         # Get User ID , Event_type (play_video) and course_id
         user_id = log_dict['context']['user_id']
         event_type = 1 if log_dict['event_type'] == 'play_video' else 0
+        course_enroll = 1 if log_dict['event_type'] == 'te.course.enrollment.activated' else 0
         course_id = log_dict['context']['course_id']
         # Check if user already exist in user list
         if not user_id in user_id_list:
             if user_id != "":
                 #  If new user add to user list
                 user_id_list.append(user_id)
-                if course_id != "":
-                    # update course list for new user
-                    course_id_list.update({user_id: [course_id]})
-        # If user already in user list
+        # Check if user in course list
+        if user_id in course_id_list:
+            if course_id != "":
+                # if new course enrolled
+                if course_enroll:
+                    # update course list wrt userid
+                    if not course_id in course_id_list[user_id]:
+                        course_id_list[user_id].append(course_id)
+        # if user not in course list
         else:
             if user_id != "":
                 if course_id != "":
-                    # if new course id wrt user id update course list wrt userid
-                    if not course_id in course_id_list[user_id]:
-                        course_id_list[user_id].append(course_id)
+                    # if new course enrolled
+                    if course_enroll:
+                        # update course list wrt userid
+                        course_id_list.update({user_id: [course_id]})
         # if user in video_play list
         if user_id in user_video_play:
             # if play_video event
@@ -64,10 +90,13 @@ def index(request):
     # get data organized for html
     for i in user_id_list:
         temp = []
-        temp.append(user_video_play[i])
-        temp.append(course_id_count[i])
+        try:
+            temp.append(user_video_play[i])
+        except:
+            temp.append(int(0))
+        try:
+            temp.append(course_id_count[i])
+        except:
+            temp.append(int(0))
         final_list.update({i: temp})
-    return render_to_response(
-            'log.html', {
-                'log_data': final_list,
-            })
+    return final_list
